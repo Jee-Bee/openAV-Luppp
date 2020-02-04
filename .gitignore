@@ -19,3 +19,4 @@ buildTest/*
 CMakeFiles/*
 src/CMakeFiles/*
 /src/version.hxx
+.DS_Store

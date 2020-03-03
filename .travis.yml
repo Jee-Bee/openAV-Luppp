@@ -56,9 +56,10 @@ os:
 - osx
 env:
   - UPLOADTOOL_SUFFIX=$TRAVIS_BRANCH
-addons:
-  homebrew:
-    packages:
+addons: 
+  homebrew: 
+    packages: 
+      - fltk
       - jpeg
       - libsndfile
       - libsigc++
@@ -70,12 +71,8 @@ addons:
       - jack
       - libsamplerate
       - ninja
-      cask:
-        - xquartz
-install:
-- git clone git://git.tuxfamily.org/gitroot/non/fltk.git ntk
-- cd ntk && sudo ./waf configure build install && cd ..
-- pip3 install meson
+    cask: 
+      - xquartz
 script:
 - meson --prefix /usr build
 - ninja -C build

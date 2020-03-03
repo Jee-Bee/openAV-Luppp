@@ -22,14 +22,23 @@ luppp_src = []
 subdir('src')
 
 
+#dep_names = [
+#  ‘ntk',
+#  'cairo',
+#  'liblo',
+#  'jack',
+#  'sndfile',
+#  'samplerate',
+#  'x11'
+#  ]
 dep_names = [
-  'ntk',
+  ‘fltk',
   'cairo',
   'liblo',
   'jack',
   'sndfile',
   'samplerate',
-  'x11'
+  'xquartz’
   ]
 deps = []
 

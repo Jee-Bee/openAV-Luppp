@@ -20,7 +20,7 @@
 #ifndef AVTK_BUTTON_H
 #define AVTK_BUTTON_H
 
-#include <ntk/FL/Fl_Button.H>
+#include <FLTK/FL/Fl_Button.H>
 
 namespace Avtk
 {

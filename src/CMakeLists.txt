@@ -6,9 +6,16 @@ message( STATUS "Architecture:  ${ARCHITECTURE}" )
 # Find depend libraries
 find_package(PkgConfig)
 
-pkg_check_modules(NTK ntk REQUIRED)
-include_directories( ${NTK_INCLUDE_DIRS}  )
-link_directories   ( ${NTK_LIBRARY_DIRS}  )
+# IF( ${ARCHITECTURE} STREQUAL “@ something with linux?@“
+# pkg_check_modules(NTK ntk REQUIRED)
+# include_directories( ${NTK_INCLUDE_DIRS}  )
+# link_directories   ( ${NTK_LIBRARY_DIRS}  )
+# ENDIF()
+# IF( ${ARCHITECTURE} STREQUAL “@ something with osx?@“
+pkg_check_modules(FLTK fltk REQUIRED)
+include_directories( ${FLTK_INCLUDE_DIRS}  )
+link_directories   ( ${FLTK_LIBRARY_DIRS}  )
+# ENDIF()
 
 pkg_check_modules(CAIRO cairo REQUIRED)
 include_directories( ${CAIRO_INCLUDE_DIRS}  )
@@ -31,9 +38,16 @@ include_directories( ${SAMPLERATE_INCLUDE_DIRS}  )
 link_directories   ( ${SAMPLERATE_LIBRARY_DIRS}  )
 
 # needed for setting icon in WM
-pkg_check_modules(X11 x11 REQUIRED)
-include_directories( ${X11_INCLUDE_DIRS}  )
-link_directories   ( ${X11_LIBRARY_DIRS}  )
+# IF( ${ARCHITECTURE} STREQUAL “@ something with linux?@“
+# pkg_check_modules(X11 x11 REQUIRED)
+# include_directories( ${X11_INCLUDE_DIRS}  )
+# link_directories   ( ${X11_LIBRARY_DIRS}  )
+# ENDIF()
+# IF( ${ARCHITECTURE} STREQUAL “@ something with osx?@“
+pkg_check_modules(XQUARTZ xQUARTZ REQUIRED)
+include_directories( ${XQUARTZ_INCLUDE_DIRS}  )
+link_directories   ( ${XQUARTZ_LIBRARY_DIRS}  )
+# ENDIF()
 
 # Check build type, adding coverage flags if needed
 IF(BUILD_TESTS)
@@ -80,11 +94,13 @@ set_target_properties(luppp PROPERTIES
 # Linking
 target_link_libraries( luppp ${JACK_LIBRARIES}       )
 target_link_libraries( luppp ${LIBLO_LIBRARIES}      )
-target_link_libraries( luppp ${NTK_LIBRARIES}        )
+# target_link_libraries( luppp ${NTK_LIBRARIES}        )
+target_link_libraries( luppp ${FLTK_LIBRARIES}        )
 target_link_libraries( luppp ${CAIRO_LIBRARIES}      )
 target_link_libraries( luppp ${SNDFILE_LIBRARIES}    )
 target_link_libraries( luppp ${SAMPLERATE_LIBRARIES} )
-target_link_libraries( luppp ${X11_LIBRARIES}        )
+# target_link_libraries( luppp ${X11_LIBRARIES}        )
+target_link_libraries( luppp ${XQUARTZ_LIBRARIES}        )
 
 # Check build type, linking with gcov for code analysis if needed
 IF(BUILD_TESTS)
